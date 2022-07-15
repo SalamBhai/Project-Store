@@ -1,0 +1,111 @@
+@mixin grid-display{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.projects{
+    padding-bottom: 2rem;
+
+    
+    &_bio-image{
+        height: 30vh;
+        width: 100%;
+        background:
+       linear-gradient(
+        to right, rgba(
+            ApplyColor(primary), 0.5
+        ),
+        rgba(ApplyColor(primary), 0.2)),
+     url('../Images/fbImage.jpg') center top;
+     background-size: cover;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: flex-end;
+
+     .text-secondary{
+        font-size: 2rem;
+        margin-bottom: 2rem;
+     }
+    }
+
+    &_bio{
+        width: 80%;
+        text-align: center;
+
+        .text-secondary{
+            padding-bottom: 1rem;
+        }
+    }
+
+    &_items{
+        width: 60vw;
+        margin: 2rem auto 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 2rem;
+    }
+    &_item{
+        position: relative;
+        border-bottom: 5px solid ApplyColor(secondary);
+        overflow: hidden;
+        cursor: pointer;
+
+        img{
+          width: 100%;
+        } 
+
+        &::after{
+            content: '';
+            position: absolute;
+            top:100%;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: ApplyColor(secondary);
+            opacity: 0;
+            @include transition-ease;
+        }
+
+        &:hover{
+           &::after{
+             top: 0;
+             opacity: 0.9;
+           }
+
+           .projects_btn{
+              opacity:1;
+           }
+        }
+    }
+
+    &_btns{
+
+        position: relative;
+        top: -35vh;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        @include grid-display;
+        align-items: center;
+        text-align: center;
+    }
+
+    &_btn:hover{
+        color: ApplyColor(primary);
+        @include transition-ease;
+    }
+   
+
+    .social-icons{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    footer{
+        transform: rotate(90deg),
+        translate(-3rem, -5rem);
+    
+    }
+
+}

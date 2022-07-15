@@ -1,0 +1,81 @@
+// importing partial files
+@import './resets';
+@import './variables';
+
+// Sass functions: reusability, simplicity, defined with the @function keyword
+//computing and returning values
+@function Weights($weight-name){
+    @return map-get($font-weights, $weight-name);
+}
+
+// Mixin: a method helper that helps for definition of object of  properties/styles 
+//that aids reusability and simplicity
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     flex-direction: $direction;
+}
+
+@mixin theme($light-theme: true){
+    @if $light-theme{
+        background: lighten($primary-color, 100%);
+        color: darken($text-color, 100%);
+    }
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+body{
+    background: $primary-color;
+    color: $text-color;
+}
+
+
+
+//Sass Nesting
+.main{
+    // import mixin
+    @include flexCenter(row);
+    width: 80% - 40%;
+    margin: 0 auto;
+    // #{&} a nesting tool used for
+    #{&}_paragraph1{
+        font-weight: Weights(bold); // Getting a value from the sass map variable; specify map name, the key
+        
+        &:hover{
+            color: pink;
+        }
+    }
+   #{&}_paragraph2{
+        @extend .main_paragraph1;
+
+
+        &:hover{
+            color: $accent-color;
+        }
+    }
+
+    @include mobile{
+        flex-direction: column;
+    }
+  
+   
+}
+
+.light{
+    @include theme($light-theme: true);
+}
+
+//Creating partial scss file containing some css snippets that can be included in other scss files
+// It is useful for: modularizing css
+// Making way for easier maintenance
+// It is created with an _ and  the compiler does not generate css files for such scss files
+// in this project are some partial scss files, _resets.scss and _variables.scss
+// The partial scss files also does work, in a team project.
+
+
+

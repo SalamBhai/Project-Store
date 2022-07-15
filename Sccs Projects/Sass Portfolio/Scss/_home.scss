@@ -1,0 +1,29 @@
+.home{
+    height: 100%;
+    padding-top: 40vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background:
+    linear-gradient(
+        to right, rgba(
+            ApplyColor(primary), 0.5
+        ),
+        rgba(ApplyColor(primary), 0.2)
+    ),
+     url('../Images/fbImage.jpg') center top;
+    background-size: cover;
+   
+
+    &_name{
+        font-size: 5rem;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid ApplyColor(text);
+        &--last{
+            color: ApplyColor(secondary);
+            font-weight: ApplyWeight(regular);
+        }
+    }
+}
